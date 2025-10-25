@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- 💫 Open Graph Embed -->
+<meta property="og:title" content="🌌 Air Space & Madz Network" />
+<meta property="og:description" content="Server Roleplay profesional bergaya modern dengan sistem whitelist, aturan jelas, dan hosting Madz Network yang stabil." />
+<meta property="og:image" content="https://matrix-roleplay.vercel.app/as.png" />
+<meta property="og:url" content="https://matrix-roleplay.vercel.app" />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#00ff99" />
+
+<!-- 🐦 Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Air Space & Madz Network" />
+<meta name="twitter:description" content="Masuk dan jelajahi dunia Roleplay serta layanan hosting berkualitas dari Madz Network." />
+<meta name="twitter:image" content="https://matrix-roleplay.vercel.app/mn.png" />
+
+<title>AIR SPACE RP - MADZ NET OFFICIAL</title>
+
+<!-- pastikan all.min.css ada di folder yang sama -->
+<link rel="stylesheet" href="all.min.css"/>
+<link rel="icon" href="mn.png"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#000;
+  --neon-green: #00ff6a;
+  --neon-cyan: #00ffd5;
+  --neon-magenta: #c84cff;
+  --muted: rgba(180,230,220,0.35);
+  --glass: rgba(255,255,255,0.04);
+  --glass-strong: rgba(255,255,255,0.07);
+  --radius:12px;
+  --maxw:1100px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"Roboto Mono", monospace;
+  background:var(--bg);
+  color:#e6fff6;
+  -webkit-font-smoothing:antialiased;
+  overflow:hidden; /* no scrolling */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Canvas matrix background */
+#cmatrix{ position:fixed; inset:0; z-index:0; pointer-events:none; mix-blend-mode:screen; opacity:0.22; }
+
+/* Layout: full screen centered */
+.app{ position:relative; z-index:2; height:100vh; display:flex; align-items:center; justify-content:center; padding:18px; }
+.frame{ width:min(var(--maxw),100%); display:flex; flex-direction:column; gap:14px; }
+
+/* Navbar neon transparent */
+.nav{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:10px 12px; border-radius:12px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0.12));
+  border:1px solid rgba(0,255,106,0.06);
+  box-shadow:0 6px 30px rgba(0,255,106,0.03);
+  backdrop-filter: blur(6px);
+}
+.brand{ display:flex; align-items:center; gap:12px; min-width:0; }
+.logo{ width:64px; height:64px; border-radius:12px; overflow:hidden; border:1px solid var(--glass-strong); background:linear-gradient(135deg, rgba(0,255,106,0.04), rgba(200,80,255,0.02)); display:flex; align-items:center; justify-content:center; }
+.logo img{ width:100%; height:100%; object-fit:contain; display:block; }
+
+/* title */
+.title{ display:flex; flex-direction:column; min-width:0; }
+.title .main{ font-family:Orbitron; font-size:16px; color:var(--neon-cyan); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.title .sub{ font-size:12px; color:var(--muted); margin-top:4px; }
+
+/* nav actions */
+.nav-actions{ display:flex; gap:8px; align-items:center; }
+.nav-btn{ padding:8px 12px; border-radius:10px; border:1px solid var(--glass); background:transparent; color:var(--muted); font-weight:700; cursor:pointer; }
+.nav-btn.primary{ background:linear-gradient(90deg, rgba(0,255,106,0.06), rgba(120,60,255,0.04)); color:#fff; border:1px solid rgba(0,255,106,0.16); box-shadow:0 6px 30px rgba(0,255,106,0.04); }
+
+/* viewport: whole area under navbar */
+.viewport{ position:relative; width:100%; height:calc(100vh - 120px); display:flex; align-items:center; justify-content:center; }
+
+/* panel */
+.panel{ width:100%; max-width:1100px; height:100%; max-height:820px; border-radius:12px; padding:26px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.6));
+  border:1px solid var(--glass); box-shadow:0 18px 60px rgba(0,0,0,0.7); display:flex; align-items:center; justify-content:center; overflow:visible;
+}
+
+/* content layout */
+.content{ width:100%; display:flex; gap:22px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+
+/* left main (Airspace) */
+.left{ flex:1 1 520px; min-width:260px; display:flex; flex-direction:column; align-items:center; gap:12px; }
+.logo-big{ width:150px; height:150px; border-radius:16px; overflow:hidden; border:1px solid var(--glass-strong); display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(0,0,0,0.05), rgba(255,255,255,0.01)); }
+.logo-big img{ width:100%; height:100%; object-fit:contain; display:block; }
+.h1{ font-family:Orbitron; font-size:26px; color:var(--neon-green); text-shadow:0 8px 30px rgba(0,255,106,0.06); text-align:center; }
+.h1 .sub{ display:block; color:var(--muted); font-size:13px; margin-top:6px; }
+
+/* actions */
+.actions{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:8px; }
+.btn{ padding:10px 14px; border-radius:10px; border:1px solid var(--glass); background:transparent; color:#e9fff0; cursor:pointer; font-weight:700; display:inline-flex; align-items:center; gap:10px; }
+.btn.neon{ background:linear-gradient(90deg, rgba(0,255,106,0.06), rgba(120,60,255,0.03)); border:1px solid rgba(0,255,106,0.12); box-shadow:0 12px 30px rgba(0,255,106,0.03); }
+
+/* right preview */
+.right{ width:320px; min-width:220px; display:flex; flex-direction:column; gap:12px; align-items:center; justify-content:flex-start; }
+.logo-small{ width:100px; height:100px; border-radius:12px; overflow:hidden; border:1px solid var(--glass); display:flex; align-items:center; justify-content:center; }
+.logo-small img{ width:100%; height:100%; object-fit:contain; display:block; }
+.price-card{ width:100%; padding:12px; border-radius:10px; border:1px solid var(--glass); background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005)); text-align:left; }
+.price-card h4{ margin:0; font-family:Orbitron; color:var(--neon-cyan); font-size:15px; }
+.price-card p{ margin-top:6px; color:var(--muted); font-size:13px; }
+
+/* sections switching (fade) */
+.section{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transition:opacity .48s ease, transform .48s ease; pointer-events:auto; }
+.section.hidden{ opacity:0; transform:scale(.98); pointer-events:none; visibility:hidden; }
+.section.visible{ opacity:1; transform:scale(1); pointer-events:auto; visibility:visible; }
+
+/* modal center popup (neon matrix style) */
+.modal-backdrop{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:9999; background:rgba(0,0,0,0.72); backdrop-filter: blur(6px) saturate(120%); }
+.modal{ width:min(860px,94%); max-height:86vh; overflow:auto; border-radius:12px; padding:18px; background:#021012; border:1px solid rgba(0,255,106,0.12); box-shadow:0 20px 60px rgba(0,0,0,0.7); color:var(--muted); transform:translateY(12px); transition:transform .26s, opacity .26s; }
+.modal.show{ transform:translateY(0); opacity:1; }
+
+/* modal "matrix" code block styling */
+.matrix-block{
+  background:#00130a; border-radius:8px; padding:14px; color:var(--neon-green); font-family: "Roboto Mono", monospace; font-size:13px; line-height:1.6;
+  border:1px solid rgba(0,255,106,0.06); box-shadow:0 8px 30px rgba(0,255,106,0.03) inset;
+  white-space:pre-wrap;
+}
+
+/* toast */
+.toast{ position:fixed; right:18px; bottom:18px; padding:10px 14px; border-radius:10px; background:linear-gradient(90deg, rgba(0,255,106,0.06), rgba(120,60,255,0.06)); border:1px solid rgba(255,255,255,0.04); color:#eafcff; box-shadow:0 12px 40px rgba(0,0,0,0.5); z-index:10000; transform:translateY(12px); opacity:0; transition:all .35s; }
+.toast.show{ opacity:1; transform:translateY(0) }
+
+/* small screens */
+@media (max-width:760px){
+  .nav{ padding:8px; border-radius:10px; }
+  .logo{ width:56px; height:56px; }
+  .logo-big{ width:120px; height:120px; }
+  .right{ width:100%; display:flex; flex-wrap:wrap; justify-content:center; }
+  .price-card{ width:160px; }
+  .panel{ padding:18px; max-height:760px }
+  .frame{ gap:10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Matrix canvas -->
+<canvas id="cmatrix"></canvas>
+
+<div class="app" role="application">
+  <div class="frame">
+
+    <!-- NAVBAR -->
+    <header class="nav" role="navigation" aria-label="Main navigation">
+      <div class="brand" role="banner">
+        <div class="logo" aria-hidden="true"><img src="as.png" alt="Air Space Logo (as.png)"></div>
+        <div class="title">
+          <span id="navTitle" class="main">AIR SPACE ROLEPLAY</span>
+          <span class="sub">Komunitas RP — Dashboard</span>
+        </div>
+      </div>
+
+      <div class="nav-actions" role="toolbar" aria-label="Site controls">
+        <button class="nav-btn" id="navAir" aria-pressed="true" onclick="switchTo('air')"><i class="fa fa-rocket"></i> Air Space</button>
+        <button class="nav-btn" id="navMadz" aria-pressed="false" onclick="switchTo('madz')"><i class="fa fa-server"></i> Madz Network</button>
+        <button class="nav-btn primary" onclick="openMadzDiscord()"><i class="fab fa-discord"></i> Discord Madz</button>
+      </div>
+    </header>
+
+    <!-- VIEWPORT -->
+    <div class="viewport" role="main">
+
+      <!-- AIR SECTION -->
+      <section id="section-air" class="section visible" aria-labelledby="air-heading">
+        <div class="panel" role="article" aria-label="Air Space panel">
+          <div class="content">
+            <div class="left" role="region">
+              <div class="logo-big" aria-hidden="true"><img src="as.png" alt="Air Space (as.png)"></div>
+              <h1 id="air-heading" class="h1">AIR SPACE ROLEPLAY <span class="sub">Panduan & Aturan</span></h1>
+
+              <div class="actions" role="toolbar">
+                <button class="btn neon" onclick="openModal('rp-detail')"><i class="fa fa-book"></i> Detail Aturan Roleplay</button>
+                <button class="btn" onclick="openModal('rules-short')"><i class="fa fa-exclamation-triangle"></i> Ringkasan Larangan</button>
+                <button class="btn" onclick="openModal('discord-rules')"><i class="fa fa-hashtag"></i> Aturan Discord</button>
+                <button class="btn" onclick="openAirDiscord()"><i class="fab fa-discord"></i> Join Discord</button>
+              </div>
+            </div>
+
+            <aside class="right" role="complementary">
+              <div class="logo-small" aria-hidden="true"><img src="mn.png" alt="Madz Network (mn.png)"></div>
+              <div class="price-card"><h4>RYZEN-30 — 30 SLOT</h4><p>Rp60.000 / Bulan</p></div>
+              <div class="price-card"><h4>RYZEN-100 — 100 SLOT</h4><p>Rp120.000 / Bulan</p></div>
+              <div style="margin-top:10px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+                <button class="btn" onclick="switchTo('madz')"><i class="fa fa-info-circle"></i> Lihat Hosting</button>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- MADZ SECTION -->
+      <section id="section-madz" class="section hidden" aria-labelledby="madz-heading">
+        <div class="panel" role="article" aria-label="Madz Network panel">
+          <div class="content">
+            <div class="left" role="region" style="align-items:center">
+              <div class="logo-big"><img src="mn.png" alt="Madz Network (mn.png)"></div>
+              <h1 id="madz-heading" class="h1" style="color:var(--neon-cyan)">MADZ NETWORK <span class="sub">Hosting & Support</span></h1>
+
+              <div class="actions" role="toolbar">
+                <button class="btn neon" onclick="openModal('hosting-detail')"><i class="fa fa-server"></i> Detail Penjualan</button>
+                <button class="btn" onclick="openModal('how-to-order')"><i class="fa fa-credit-card"></i> Cara Order</button>
+                <button class="btn" onclick="openModal('terms')"><i class="fa fa-file-alt"></i> Syarat & Ketentuan</button>
+                <button class="btn" onclick="openMadzDiscord()"><i class="fab fa-discord"></i> Discord Madz</button>
+              </div>
+
+              <div style="margin-top:14px; text-align:center; color:var(--muted); max-width:740px;">
+                Layanan: panel web, backup mingguan, anti-DDoS dasar, support instal resources SA-MP & custom scripts. Klik tombol atas untuk kembali ke Air Space.
+              </div>
+
+              <div style="margin-top:18px">
+                <button class="nav-btn" onclick="switchTo('air')"><i class="fa fa-rocket"></i> Kembali ke Air Space</button>
+              </div>
+            </div>
+
+            <aside class="right" role="complementary" style="align-items:center; justify-content:center">
+              <div class="logo-small"><img src="as.png" alt="Air Space (as.png)"></div>
+              <div class="price-card"><h4>Harga Sample</h4><p style="color:var(--muted)">Kontak Discord untuk detail & diskon.</p></div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <div style="text-align:center;color:var(--muted);font-size:13px">© Madz Network — Air Space Roleplay · Since 26 Oktober 2025</div>
+  </div>
+</div>
+
+<!-- Modal (center popup) -->
+<div id="modalBackdrop" class="modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
+  <div class="modal" role="document" aria-modal="true">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h2 id="modalTitle" class="m-title" style="color:var(--neon-cyan)">Title</h2>
+      <div style="display:flex;gap:8px">
+        <button class="btn" onclick="copyModal()"><i class="fa fa-copy"></i> Salin</button>
+        <button class="btn" onclick="closeModal()"><i class="fa fa-times"></i> Tutup</button>
+      </div>
+    </div>
+    <div id="modalBody" style="margin-top:10px"></div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast" role="status" aria-live="polite">Notifikasi</div>
+
+<script>
+/* ================= Matrix Canvas ================ */
+const canvas = document.getElementById('cmatrix');
+const ctx = canvas.getContext('2d');
+let W, H, cols, fontSize, drops;
+function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; fontSize = Math.max(10, Math.floor(W/100)); ctx.font = fontSize + 'px monospace'; cols = Math.floor(W / fontSize); drops = new Array(cols).fill(1); }
+window.addEventListener('resize', resize);
+resize();
+const letters = '01█▓▒░<>/\\|:;-=+*abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+function matrixLoop(){
+  ctx.fillStyle = 'rgba(0,0,0,0.06)';
+  ctx.fillRect(0,0,W,H);
+  for(let i=0;i<cols;i++){
+    const char = letters.charAt(Math.floor(Math.random()*letters.length));
+    const x = i * fontSize;
+    const y = drops[i] * fontSize;
+    ctx.fillStyle = (Math.random()>0.95) ? 'rgba(0,255,106,0.95)' : 'rgba(0,255,106,0.18)';
+    ctx.fillText(char, x, y);
+    if(y > H && Math.random()>0.975) drops[i] = 0;
+    drops[i]++;
+  }
+  requestAnimationFrame(matrixLoop);
+}
+matrixLoop();
+
+/* ================= Sections switch ================= */
+const secAir = document.getElementById('section-air');
+const secMadz = document.getElementById('section-madz');
+const navTitle = document.getElementById('navTitle');
+const navAirBtn = document.getElementById('navAir');
+const navMadzBtn = document.getElementById('navMadz');
+
+function switchTo(key){
+  if(key === 'air'){
+    secMadz.classList.remove('visible'); secMadz.classList.add('hidden');
+    secAir.classList.remove('hidden'); secAir.classList.add('visible');
+    navTitle.textContent = 'AIR SPACE ROLEPLAY';
+    navAirBtn.setAttribute('aria-pressed','true'); navMadzBtn.setAttribute('aria-pressed','false');
+    showToast('Air Space — tampilan utama');
+  } else {
+    secAir.classList.remove('visible'); secAir.classList.add('hidden');
+    secMadz.classList.remove('hidden'); secMadz.classList.add('visible');
+    navTitle.textContent = 'MADZ NETWORK';
+    navAirBtn.setAttribute('aria-pressed','false'); navMadzBtn.setAttribute('aria-pressed','true');
+    showToast('Madz Network — tampilan hosting');
+  }
+}
+
+/* ================= Modal (matrix-styled content) ================= */
+const modalBackdrop = document.getElementById('modalBackdrop');
+const modalTitle = document.getElementById('modalTitle');
+const modalBody = document.getElementById('modalBody');
+const toast = document.getElementById('toast');
+
+const modalContents = {
+  'rp-detail': {
+    title: '📘 DETAIL ATURAN ROLEPLAY',
+    body: `
+┌──────────────────────────────────────────────────────┐
+| AIR SPACE ROLEPLAY — ATURAN RESMI (MATRIX STYLE)
+└──────────────────────────────────────────────────────┘
+
+[1] IDENTITAS & NAMA RP
+- Gunakan format nama: Nama_Nama (contoh: Rudi_Putra).
+- Nama harus sopan; tidak memakai kata kasar, angka berlebihan, atau simbol aneh.
+
+[2] AKTUALITAS PERAN (IN-CONTEXT)
+- Seluruh tindakan harus logis dan sesuai dengan karakter.
+- Jangan melakukan tindakan ekstrem tanpa alasan RP (mis. RDM/RK).
+
+[3] KOMUNIKASI
+- Gunakan chat IC saat berperan; pindah ke OOC hanya di channel yang diperbolehkan.
+- Jangan memaksa pemain lain melakukan aksi jika mereka menolak.
+
+[4] PELANGGARAN UTAMA (BREAK RULES)
+- RDM / RK : Membunuh tanpa alasan RP valid.
+- MG (Metagaming) : Menggunakan info OOC untuk IC.
+- PG (Powergaming) : Memaksakan hasil/aksi tanpa celah lawan.
+- DoXXing / Harassment : Melanggar privasi pemain = sanksi berat.
+
+[5] LAPORAN & BUKTI
+- Laporkan menggunakan /report atau channel #report di Discord.
+- Sertakan bukti (screenshots / rekaman) untuk proses validasi.
+
+[6] SANKSI
+- Warning -> Temporary ban -> Permanent ban (tergantung bukti & beratnya kasus).
+
+[7] ATURAN DISCORD
+- Hormati staff & member. Tidak spam/promosi tanpa izin.
+- Gunakan channel sesuai fungsinya. NSFW dilarang.
+- Banding via #appeal jika diperlukan.
+
+──────────────────────────────────────────────────────────
+Catatan: Keputusan akhir berada pada tim admin. Ikuti instruksi staff saat proses.
+`
+  },
+  'rules-short': {
+    title: '⛔ RINGKASAN LARANGAN (SINGKAT)',
+    body: `
+• RDM / RK — dilarang.
+• MG — jangan gunakan info OOC untuk keuntungan IC.
+• PG — hindari tindakan tidak realistis yang memaksa hasil.
+• Harassment / Doxxing — langsung ban.
+`
+  },
+  'discord-rules': {
+    title: '📜 ATURAN DISCORD',
+    body: `
+• Hormati semua member & staff.
+• Tidak boleh spam, promosi, atau link berbahaya.
+• Gunakan channel sesuai fungsi; NSFW dilarang.
+• Banding melalui #appeal.
+`
+  },
+  'hosting-detail': {
+    title: '💻 DETAIL PENJUALAN HOSTING',
+    body: `
+Fitur:
+- Panel web, backup mingguan, monitoring & uptime.
+- Anti-DDoS dasar, support instal resources SA-MP.
+Pembayaran: Dana / GoPay / QRIS / Transfer Bank.
+Kontak: Diskusi via Discord untuk paket custom.
+`
+  },
+  'how-to-order': {
+    title: '🛒 CARA ORDER',
+    body: `1) Pilih paket. 2) Hubungi Admin via Discord. 3) Bayar & kirim bukti. 4) Server diproses (1x24 jam kerja).`
+  },
+  'terms': {
+    title: '📑 SYARAT & KETENTUAN',
+    body: `Layanan sesuai paket. Refund hanya jika provisioning gagal. Penggunaan sesuai ketentuan layanan.`
+  }
+};
+
+function openModal(key){
+  const c = modalContents[key];
+  if(!c) return;
+  modalTitle.innerText = c.title;
+  // matrix style: show inside monospace green block
+  modalBody.innerHTML = `<div class="matrix-block">${escapeHtml(c.body)}</div>`;
+  modalBackdrop.style.display = 'flex';
+  modalBackdrop.setAttribute('aria-hidden','false');
+  modalBackdrop.querySelector('.modal').classList.add('show');
+  showToast('Membuka: ' + c.title);
+}
+
+function closeModal(){
+  const m = modalBackdrop.querySelector('.modal');
+  m.classList.remove('show');
+  setTimeout(()=>{ modalBackdrop.style.display='none'; modalBackdrop.setAttribute('aria-hidden','true'); }, 220);
+}
+
+/* copy modal content */
+function copyModal(){
+  const txt = modalBody.innerText || modalBody.textContent;
+  navigator.clipboard?.writeText(txt).then(()=> showToast('Isi aturan disalin ke clipboard'), ()=> showToast('Gagal menyalin'));
+}
+
+/* escape HTML for safe pre block */
+function escapeHtml(str){
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+}
+
+/* close modal on backdrop click */
+modalBackdrop.addEventListener('click', (e)=>{ if(e.target === modalBackdrop) closeModal(); });
+
+/* toast */
+let tTimer;
+function showToast(msg, time=3000){
+  toast.innerText = msg;
+  toast.classList.add('show');
+  clearTimeout(tTimer);
+  tTimer = setTimeout(()=> toast.classList.remove('show'), time);
+}
+
+/* discord helpers */
+function openAirDiscord(){ showToast('Membuka Discord Airspace'); window.open('https://discord.gg/Ku9xxVhg','_blank'); }
+function openMadzDiscord(){ showToast('Membuka Discord Madz'); window.open('https://discord.gg/7ZnP2dWq','_blank'); }
+
+/* set default visible */
+document.addEventListener('DOMContentLoaded', ()=>{ switchTo('air'); });
+
+/* prevent overscroll on mobile */
+document.addEventListener('touchmove', function(e){ e.preventDefault(); }, {passive:false});
+</script>
+
+</body>
+</html>
